@@ -1,0 +1,11 @@
+React
+
+instalacao
+npm install -g create-react-app
+
+criando um projeto
+npx create-react-app nomedoapp
+
+
+startar localhost
+npm start
