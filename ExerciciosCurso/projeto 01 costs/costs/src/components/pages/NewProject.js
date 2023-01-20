@@ -1,6 +1,9 @@
 function NewProject() {
     return (
-        <h1>New Project</h1>
+        <div>
+            <h1>Criar Projeto</h1>
+            <p>Crie se projeto para depois adicionar os serviços.</p>
+        </div>
     )
 }
 
