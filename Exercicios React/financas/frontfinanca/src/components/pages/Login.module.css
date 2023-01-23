@@ -1,0 +1,21 @@
+.form {
+    border: 1px solid gray;
+    width: 50%;
+    margin: auto;
+    margin-top: 10% ;
+    border-radius: 15px;
+    display: grid;
+    justify-content: center;
+    background-color: #480FEC;
+    padding-bottom: 40px ;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+h3 {
+    text-align: center;
+    color: white;
+    font-size: 28px;
+}
