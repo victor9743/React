@@ -1,6 +1,7 @@
 import {useNavigate} from 'react-router-dom'
 import styles from './NewProject.module.css'
 import ProjectForm from '../project/ProjectForm';
+
 function NewProject() {
 
     // permite fazer redirects no sistema
@@ -12,7 +13,7 @@ function NewProject() {
         project.cost = 0
         project.services = []
 
-        fetch('http://localhost:3000/projects',{
+        fetch('http://localhost:5000/projects',{
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -21,8 +22,8 @@ function NewProject() {
         })
         .then((resp)=> resp.json())
         .then((data) => {
-            console.log(data)
             // redirect
+            history("/projetos", {state: 'Projeto criado com sucesso', replace: true})
         })
         .catch((err) => {
             console.log(err)
