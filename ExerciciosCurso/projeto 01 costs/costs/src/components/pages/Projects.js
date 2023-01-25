@@ -5,9 +5,11 @@ import Container from "../layout/Container"
 import LinkButton from "../layout/LinkButton";
 import ProjectCard from "../project/ProjectCard";
 import { useState, useEffect } from "react";
+import Loading from "../layout/Loading";
 
 function Projects() {
     const [projects, setProjects] = useState([])
+    const [removeLoading, setRemoveLoading] = useState(false)
 
     // captura as mensagens do useNavigation
     const location = useLocation()
@@ -18,17 +20,20 @@ function Projects() {
     }
 
     useEffect(()=>{
-        fetch('http://localhost:5000/projects',{
-            method: 'GET',
-            headers: {
-                'Content-Type' : 'Application/json'
-            }
-        })
-        .then((resp) => resp.json())
-        .then((data)=>{
-            setProjects(data)
-        })
-        .catch((err)=> { console.log(err) })
+        setTimeout(() => {
+            fetch('http://localhost:5000/projects',{
+                method: 'GET',
+                headers: {
+                    'Content-Type' : 'Application/json'
+                }
+            })
+            .then((resp) => resp.json())
+            .then((data)=>{
+                setProjects(data)
+                setRemoveLoading(true)
+            })
+            .catch((err)=> { console.log(err) })
+        }, 300)
 
     }, [])
 
@@ -40,10 +45,18 @@ function Projects() {
             </div>
             {message && <Message msg={message} type="success" />}
             <Container customClass="start">
-                <p>Projetos...</p>
                 {projects.length > 0 &&
-                    projects.map((project, key)=> <ProjectCard id={project.id} name={project.name} budget={project.budget} category={project.category} key={project.id} /> )}
+                    projects.map((project, key)=> <ProjectCard 
+                    id={project.id} 
+                    name={project.name} 
+                    budget={project.budget} 
+                    category={project.category} 
+                    key={project.id} /> )}
             </Container>
+            {!removeLoading && <Loading />}
+            {removeLoading && projects.length === 0 && (
+                <p>Nao ha projetos cadastrados</p>
+            )}
         </div>
     )
 }
