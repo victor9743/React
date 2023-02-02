@@ -11,18 +11,3 @@
     display: flex;
     flex-wrap: wrap;
 }
-
-.form h3 {
-    text-align: center;
-    color: white;
-    font-size: 28px;
-}
-
-.form .botoes {
-    display: flex;
-    align-items: center;
-}
-
-.form .botoes .cadastrar {
-    margin-left: 290px;
-}

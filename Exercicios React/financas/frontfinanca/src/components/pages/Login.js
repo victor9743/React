@@ -6,13 +6,10 @@ import { useNavigate } from 'react-router-dom'
 function Index() {
 
     const history = useNavigate()
-
-    function login() {
-
-    }
-
+    
     function submit(e) {
         e.preventDefault()
+        history("/Financa/PaginaInicial")
     }
 
     return (

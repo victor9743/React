@@ -1,7 +1,7 @@
 import styles from './Button.module.css'
 function Button({type, value}) {
-    return(
-        <input type={type} value={value} className={styles.btn}/>
+    return (
+        <button type={type} className={styles.btn} >{value}</button>
     )
 }
 
