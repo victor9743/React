@@ -2,29 +2,22 @@ import LinkButton from "../components/LinkButton"
 import InputForm from "../components/InputForm"
 import SubmitButton from "../components/SubmitButton"
 import { useState } from "react"
+import axios from "axios"
 function NewItem() {
 
     const [item, setItem] = useState([])
 
     function submit(e) {
         e.preventDefault()
-        console.log(item)
+       
+        let itens = new TextEncoder("utf-8").encode(JSON.stringify(item))
+        axios.post('http://localhost:80/servidores/server1.php', itens).then(function (response) {
+            console.log('Success: ', response.data);
         
-        fetch('http://localhost:80/servidores/server1.php', {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(item)
-        })
-        .then((resp) => resp.json())
-        .then((data) => {
-            console.log(data)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        }).catch(function (error) {
+            console.log('Error: ', error);
+        });        
+        
     }
 
     function handleChange(e) {
