@@ -1,1 +1,60 @@
 curso react
+
+Criando um novo projeto no react
+npx create-react-app nomedoprojeto
+
+Inicia um servidor
+npm start
+
+tipo de componentes no react
+
+componentes de classes stateless
+class App extends Component {
+  render () {
+    return (
+        <div className="App">
+            <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+                <p>
+                Hello Wolrd
+                </p>
+                <a
+                className="App-link"
+                href="https://reactjs.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                >
+                Learn React
+                </a>
+            </header>
+        </div>
+    )
+  }
+}
+
+componentes de função stateless
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Hello Wolrd
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
+
+adicionando um evento de click no jsx 
+<p onClick={() => alert("hello wolrd")}>
+ elemento
+</p>
