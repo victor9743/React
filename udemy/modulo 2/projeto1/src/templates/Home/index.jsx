@@ -85,8 +85,22 @@ export class Home extends Component {
   }
   
   handleClick = () => {
-    const {counter} = this.state;
-    this.setState({counter: counter + 1});
+    // const {counter} = this.state;
+    // this.setState({counter: counter + 1}, () => {
+    //   console.log(this.state.counter);
+    // });
+    /*
+      prevState: pega o estado anterior da variavel. A mesma do this.state.counter
+      prevProps: pegar propriedades passadas no paramento dos componentes. O mesmo que this.props
+    */
+    this.setState(
+      (prevState, prevProps) => {
+        return { counter: prevState.counter + 1 }
+      }, 
+      () => {
+        console.log(this.state.counter);
+      }
+    );
   }
 
   render() {
