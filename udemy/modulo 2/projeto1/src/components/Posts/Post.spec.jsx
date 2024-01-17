@@ -1,5 +1,5 @@
-import { render } from '@testing-library/react';
 import {Posts} from '.';
+import { render, screen } from '@testing-library/react';
 
 const props = {
     posts: [
@@ -22,10 +22,16 @@ const props = {
             cover: 'img/img3.png'
         }
     ]
-}
+};
 
 describe('<Posts />', () => {
     it('shoud render posts', () => {
         render(<Posts  {...props}/>);
+
+        // espera que apareca 3 titulos na tela ( nao esta funcionando )
+        // expect(screen.getAllByRole('healing', { name: /title/i }))
+        // .toHaveLength(3);
+        // expect(screen.getAllByText(/body/i))
+        // .toHaveLength(3);
     });
 })

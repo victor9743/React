@@ -1,8 +1,6 @@
 import './styles.css';
-export const PostCard = ({title, body, cover}) => {
+export const PostCard = ({title, cover, body, id}) => {
   // const {post} = props; // mesma forma: const post = props.post;
-
-  return (
     <div className='post'>
       <img src={cover} alt={title} />
       <div className='post-content' >
@@ -10,5 +8,4 @@ export const PostCard = ({title, body, cover}) => {
         <p>{body}</p>
       </div>
     </div>
-  )
 }
