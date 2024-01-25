@@ -1,0 +1,18 @@
+{
+  "db_produtos": [
+    {
+      "id": "fc92",
+      "id_produto": 1706205461622,
+      "descricao": "TESTE COM TEXTO",
+      "valor": "123456",
+      "date_created": "\"2024-01-25T17:57:41.622Z\""
+    },
+    {
+      "id": "16b2",
+      "id_produto": 1706210292273,
+      "descricao": "novo teste",
+      "valor": "54321",
+      "date_created": "\"2024-01-25T19:18:12.273Z\""
+    }
+  ]
+}
