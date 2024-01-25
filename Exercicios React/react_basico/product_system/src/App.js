@@ -19,7 +19,6 @@ function App() {
   },[produtos]);
 
   const salvarValor = (event) => {
-    event.preventDefault();
     axios({
       method: 'post',
       url: 'http://localhost:3006/db_produtos',

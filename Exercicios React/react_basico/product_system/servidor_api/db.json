@@ -13,6 +13,20 @@
       "descricao": "novo teste",
       "valor": "54321",
       "date_created": "\"2024-01-25T19:18:12.273Z\""
+    },
+    {
+      "id": "05ac",
+      "id_produto": 1706212027791,
+      "descricao": "outro teste",
+      "valor": "2000",
+      "date_created": "\"2024-01-25T19:47:07.791Z\""
+    },
+    {
+      "id": "d645",
+      "id_produto": 1706212304528,
+      "descricao": "GRUPO 04",
+      "valor": "8000",
+      "date_created": "\"2024-01-25T19:51:44.528Z\""
     }
   ]
 }
