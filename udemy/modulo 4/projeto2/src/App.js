@@ -25,14 +25,12 @@ Button.propTypes = {
 function App () {
   const [counter, setCounter] = useState(0);
 
-  const incrementCounter = useCallback(
-    (number) => {
+  const incrementCounter = useCallback((number) => {
       // setCounter(counter + number);
       // toda vez que a alguma funcionalidade dentro do app é executada ex: clique no botão, todas as funcionalidade do método app são recarregadas
       //  impede que a funcionalidade seja recriada cada vez que a função app for recarregada
       setCounter((c) => c + number);
-    },[]
-  );
+    },[] );
 
 
   console.log("Pai, renderizou");
