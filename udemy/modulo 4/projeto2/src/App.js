@@ -1,34 +1,92 @@
 // import P from 'prop-types';
 // import logo from './logo.svg';
+import { useReducer } from 'react';
 import './App.css';
+// eslint-disable-next-line
 import React, { useState, useCallback, useMemo, useEffect, Component, useRef, useContext } from 'react';
-
+// import { AppContext } from './contexts/AppContext';
+// import { Div } from './components/Div';
 const globalState = {
   title: 'titulo do contexto',
+  body: 'O body do contexto',
   counter: 0,
 };
 
-const GlobalContext = React.createContext();
-
-const Div = ({children}) => {
-  // return <div className='App'>{children}</div>
-  return <H1>Oi</H1>
-}
-
-// eslint-disable-next-line
-const H1 = () => {
-  const the_context = useContext(GlobalContext);
-  return <h3>{the_context.title}</h3>;
-}
-
-function App () 
+function App() 
 {
   return (
-    <GlobalContext.Provider value={globalState}>
-        <Div />
-    </GlobalContext.Provider>
-  );
+    <div>
+      Hello wolrd
+    </div>
+  )
 }
+
+// função de reducer 
+// const reducer = (state, action) => {
+
+//   switch (action.type) {
+//     case 'muda': {
+//       console.log("chamou muda", action.payload);
+//       return { ...state, title: 'Mudou'};
+//     }
+//     case 'inverter': {
+//       const {title} = state;
+//       console.log("chamou inverter");
+//       // faz com que a string fique invertida, exemplo: abc = cba
+//       return { ...state, title: title.split('').reverse().join('') }
+//     }
+//   }
+
+//   return { ...state }
+// }
+
+// function App () 
+// {
+//   // useReducer: age de forma parecida com o useState, porém no lugar de realizar atualizações de estado diretamente, ele delega uma função para que seja realizada a atualização.
+//   // pode ser utilizado como exemplo para verificação de algum dado, etc...
+//   /*
+//     dispatch: é uma função quando você for utilizar o useReducer
+//     reducer: funcionalidade que será chamada quando o useReducer o chamado
+//     globalState: será os dados que serão manipulados na função
+//   */
+//   const [state, dispatch] = useReducer(reducer, globalState);
+//   const { counter, title, body } = state;
+
+//   return (
+//     <>
+//       <div>
+//         {title} - {counter}
+//       </div>
+//       <div>
+//         {/* type: tipo de ação que eu enviaria para a função delegada no useReducer */}
+//         <button onClick={ () => dispatch({
+//           type: "muda",
+//           payload: new Date().toLocaleDateString('pt-BR'),
+//           }) } >Click</button>
+//       </div>
+//       <div>
+//         <button onClick={ () => dispatch({type: 'inverter'}) } >Click inverter</button>
+//       </div>
+//     </>
+//   )
+// }
+
+// function App () 
+// {
+  // useContext
+  // return (
+    // <AppContext>
+    //   <Div />
+    // </AppContext>
+  // );
+  // const [ContextState, SetContextState] = useState(globalState);
+
+  // return (
+  //   <GlobalContext.Provider value={{ContextState, SetContextState}}>
+  //       <Div />
+  //   </GlobalContext.Provider>
+  // );
+// }
 
 // const Post = ({id, titulo, corpo, handleClick}) => {
 //   // console.log("filho rendereizou");
