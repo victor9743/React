@@ -1,19 +1,32 @@
 // import P from 'prop-types';
 // import logo from './logo.svg';
 import './App.css';
-import React, { useState, useCallback, useMemo, useEffect, Component, useRef } from 'react';
+import React, { useState, useCallback, useMemo, useEffect, Component, useRef, useContext } from 'react';
 
 const globalState = {
   title: 'titulo do contexto',
   counter: 0,
 };
 
+const GlobalContext = React.createContext();
+
+const Div = ({children}) => {
+  // return <div className='App'>{children}</div>
+  return <H1>Oi</H1>
+}
+
+// eslint-disable-next-line
+const H1 = () => {
+  const the_context = useContext(GlobalContext);
+  return <h3>{the_context.title}</h3>;
+}
+
 function App () 
 {
   return (
-    <div className='App'>
-      <h3>Hello Wolrd</h3>
-    </div>
+    <GlobalContext.Provider value={globalState}>
+        <Div />
+    </GlobalContext.Provider>
   );
 }
 
