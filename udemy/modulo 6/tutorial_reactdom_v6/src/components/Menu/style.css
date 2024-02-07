@@ -1,0 +1,6 @@
+.menu ul {
+    display: flex;
+    list-style: none;
+    /* gap: faz com o elemento distancie 30px */
+    gap: 30px;
+}
