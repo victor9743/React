@@ -1,4 +1,5 @@
-export const Item = ({item, selectedProduct}) => {
+export const Item = ({item, selectedProduct, changeQuantity}) => {
+
     return(
         <>
             <div onClick={() => selectedProduct(item.id)} key={item.id} className={`product ${item.isInBag ? "selected" : ""}`}>
@@ -11,9 +12,9 @@ export const Item = ({item, selectedProduct}) => {
                     {
                         item.isInBag &&
                         <div className="quantity-area">
-                            <button>-</button>
+                            <button disabled={item.quantity <= 1} onClick={(e) => changeQuantity(e, item.id, -1)} >-</button>
                             <span className="quantity">{item.quantity}</span>
-                            <button>+</button>
+                            <button onClick={(e) => changeQuantity(e, item.id, +1)}>+</button>
                         </div>
                     }
                 </div>

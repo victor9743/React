@@ -100,12 +100,21 @@ function App() {
 
     }
 
-    const calcularTotal = (itemsInBag) => {
+    const calcularTotal = () => {
         let orderTotal = 0;
         itemsInBag.forEach(item => orderTotal += item.price * item.quantity);
-        console.log(orderTotal);
-        // return orderTotal.toFixed(2)
+        return orderTotal.toFixed(2)
     }
+
+    const quantityHandler = (e, id, increment) => {
+        e.stopPropagation();
+        let itemSelected = items.filter((item) => item.id === id)[0];
+        // altera o valor do state
+        itemSelected.quantity += increment;
+
+        setItems(items.map(el => el.id === id ? itemSelected : el))
+    }
+    
 
     return ( 
         <>
@@ -116,15 +125,15 @@ function App() {
                     items.map(item =>
                         <Item
                             selectedProduct = {(id) => SelectedHandle(id)}
+                            changeQuantity = {(e, id, increment) => quantityHandler(e, id, increment)}
                             key={item.id} 
                             item={item} 
                         />
                     )
                 }
             </section>
-            
 
-            { itemsInBag.length > 0  && <OrderDetails itemsInBag={itemsInBag} calcularTotal={() => calcularTotal(itemsInBag)} /> }
+            { itemsInBag.length > 0  && <OrderDetails itemsInBag={itemsInBag} calcularTotal={calcularTotal()}  /> }
             
         </>
     );

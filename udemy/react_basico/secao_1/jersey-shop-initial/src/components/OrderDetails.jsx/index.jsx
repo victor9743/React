@@ -21,7 +21,7 @@ export const OrderDetails = ({itemsInBag, calcularTotal}) => {
                         
                         <tr>
                             <th>Total</th>
-                            {/* <th>$ {calcularTotal}</th> */}
+                            <th>$ {calcularTotal}</th>
                         </tr>
                     </tbody>
                 </table>
