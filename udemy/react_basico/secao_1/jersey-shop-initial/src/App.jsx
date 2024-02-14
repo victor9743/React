@@ -1,8 +1,11 @@
 import './App.css';
+import { OrderDetails } from './components/OrderDetails.jsx';
+import { Item } from './components/Item/index.jsx';
+import { useState } from 'react';
 
 function App() {
 
-    const items = [
+    const [items, setItems] = useState([
         {
             
             id: 1, 
@@ -84,7 +87,18 @@ function App() {
             quantity: 1, 
             isInBag: false
         }
-    ];
+    ]);
+
+    const itemsInBag = items.filter(item => item.isInBag);
+
+    const SelectedHandle = (item_id) => {
+        let itemSelected = items.filter((item) => item.id === item_id)[0];
+        // altera o valor do state
+        itemSelected.isInBag = !itemSelected.isInBag;
+        
+        setItems(items.map(el => el.id === item_id ? itemSelected : el))
+
+    }
 
     return ( 
         <>
@@ -93,50 +107,17 @@ function App() {
 
                 {
                     items.map(item =>
-                        <div key={item.id} className={`product ${item.isInBag ? "selected" : ""}`}>
-                            <div className="photo">
-                                <img src= {"/img/"  + item.photo} />
-                            </div>
-                            <div className="description">
-                                <span className="name">{item.name}</span>
-                                <span className="price">{item.price}</span>
-                                {
-                                    item.isInBag &&
-                                    <div className="quantity-area">
-                                        <button>-</button>
-                                        <span className="quantity">{item.quantity}</span>
-                                        <button>+</button>
-                                    </div>
-                                }
-                            </div>
-                        </div>
+                        <Item
+                            selectedProduct = {(id) => SelectedHandle(id)}
+                            key={item.id} 
+                            item={item} 
+                        />
                     )
                 }
             </section>
             
 
-            <section className="summary">
-                <strong>Order Details</strong>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1x Real Madrid</td>
-                            <td>$ 119.99</td>
-                        </tr>
-                        
-                        <tr>
-                            <th>Total</th>
-                            <th>$ 119.99</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+            { itemsInBag.length > 0  && <OrderDetails /> }
             
         </>
     );
