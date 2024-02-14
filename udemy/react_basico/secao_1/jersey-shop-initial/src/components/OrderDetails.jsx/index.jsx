@@ -1,4 +1,5 @@
-export const OrderDetails = () => {
+export const OrderDetails = ({itemsInBag, calcularTotal}) => {
+
     return (
         <>
             <section className="summary">
@@ -11,14 +12,16 @@ export const OrderDetails = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1x Real Madrid</td>
-                            <td>$ 119.99</td>
-                        </tr>
+                        {itemsInBag.map(item =>
+                            <tr key={item.id}>
+                                <td>{item.quantity}x {item.nome}</td>
+                                <td>$ {(item.price * item.quantity).toFixed(2)}</td>
+                            </tr>  
+                        )}
                         
                         <tr>
                             <th>Total</th>
-                            <th>$ 119.99</th>
+                            {/* <th>$ {calcularTotal}</th> */}
                         </tr>
                     </tbody>
                 </table>

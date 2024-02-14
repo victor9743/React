@@ -95,9 +95,16 @@ function App() {
         let itemSelected = items.filter((item) => item.id === item_id)[0];
         // altera o valor do state
         itemSelected.isInBag = !itemSelected.isInBag;
-        
+
         setItems(items.map(el => el.id === item_id ? itemSelected : el))
 
+    }
+
+    const calcularTotal = (itemsInBag) => {
+        let orderTotal = 0;
+        itemsInBag.forEach(item => orderTotal += item.price * item.quantity);
+        console.log(orderTotal);
+        // return orderTotal.toFixed(2)
     }
 
     return ( 
@@ -117,7 +124,7 @@ function App() {
             </section>
             
 
-            { itemsInBag.length > 0  && <OrderDetails /> }
+            { itemsInBag.length > 0  && <OrderDetails itemsInBag={itemsInBag} calcularTotal={() => calcularTotal(itemsInBag)} /> }
             
         </>
     );
