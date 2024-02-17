@@ -1,4 +1,4 @@
-// todos: state atual, action: ação
+
 export default function todosReducer (todos, action) {
     
     switch (action.type) {
