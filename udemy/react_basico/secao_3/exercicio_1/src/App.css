@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+
+h2 {
+    font-size: 40px;
+    margin-bottom: 6px;
+}
+p.counter {
+    font-size: 36px;
+    font-weight: bold;
+    background-color: #252525;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin: 4px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
