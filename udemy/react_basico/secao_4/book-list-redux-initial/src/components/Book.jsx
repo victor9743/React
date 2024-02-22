@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
-
+import { useDispatch } from 'react-redux';
+import { ToggleRead } from '../store/booksSlice.js';
 function Book({book}) {
+
+    const dispatch = useDispatch();    
+    
+    function handleToggleRead(e, id) {
+        e.preventDefault();
+        dispatch(ToggleRead(id));
+    }
+
     return (
         <>
             <Link to={'/book/' + book.id}>
@@ -15,7 +24,7 @@ function Book({book}) {
                     <div className="book-cover">
                         <img src={book.cover} />
 
-                        <button className={book.isRead ? 'isRead' : ''}>
+                        <button onClick={(e) => {handleToggleRead(e, book.id)} } className={book.isRead ? 'isRead' : ''}>
                             <i className="fa-solid fa-eye"></i>
                             <span>{ book.isRead ? "Already Read It" : "Haven't Read it yet" }</span>
                         </button>

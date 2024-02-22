@@ -1,29 +1,35 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { selectNotes, eraseNote, addNotes } from '../store/noteSlice.js';
 
-function Notes() {
-    
-   
+function Notes({bookId}) {
 
-    let notes = [
-        {
-          id: 1,
-          book_id: 1,
-          title:"Page 18 - On Europe's Decline",
-          text: "The leading states of the European Union, and in particular of the eurozone, were dogged by a growing sense of decline. Their production systems and their societies that were said to be in decline, rather than Europe as a whole."
-        },
-        {
-          id: 2,
-          book_id: 1,
-          title:"Page 55 - Treaty on Friendship and Cooperation",
-          text: "The Portuguese and Spanish Governments signed the Treaty on Friendship and Cooperation at the 32nd Luso-Spanish Summit held in Trujillo in October 2021. This followed on from the commitment undertaken at the Guarda Summit in October 2020."
-        },
-        {
-          id: 3,
-          book_id: 2,
-          title:"Page 61 - On Mesopotamia",
-          text: "Jane R. McIntosh wrote the first general introduction to Mesopotamia that covers all four of the area's major ancient civilizations―Sumer, Akkad, Assyria, and Babylonia."
-        }
-        
-    ];
+  const dispatch = useDispatch();
+
+  function handleEraseNote(id) {
+    if(confirm("Are you sure you want to erase this note ?")) {
+      dispatch(eraseNote(id));
+    }
+  }
+
+  function handleAddNote (e) {
+    e.preventDefault();
+
+    const newNote = {
+      book_id: bookId,
+      title: document.querySelector('input[name=title]').value,
+      note: document.querySelector('textarea[name=note]').value
+    }
+
+    if (newNote.title && newNote.note) {
+      dispatch(addNotes(newNote));
+      document.querySelector('input[name=title]').value = "";
+      document.querySelector('textarea[name=note]').value = "";
+    } else {
+      alert("please fill the mandatory fields");
+    }
+  }
+
+  const notes = useSelector(selectNotes).filter(note => note.book_id == bookId);
     
     return (
       <>
@@ -32,15 +38,20 @@ function Notes() {
 
             <h2>Reader's Notes</h2>
 
+          { notes.length ? 
             <div className="notes">
-                {notes.map(note => 
-                    <div key={note.id} className="note">
-                        <div className="erase-note">Erase note</div>
-                        <h3>{note.title}</h3>
-                        <p>{note.text}</p>
-                    </div>
-                    )}
+            {notes.map(note => 
+                <div key={note.id} className="note">
+                    <div onClick={() => handleEraseNote(note.id)} className="erase-note">Erase note</div>
+                    <h3>{note.title}</h3>
+                    <p>{note.text}</p>
+                </div>
+                )}
             </div>
+          :
+            <p>This books doesn't have notes yet.</p>
+          }
+            
 
             <details>
                 <summary>Add a note</summary>
@@ -54,7 +65,7 @@ function Notes() {
                         <textarea type="text" name="note" placeholder="Add note" />
                     </div>
                     
-                    <button className="btn btn-block">Add Note</button>
+                    <button onClick={(e) => {handleAddNote(e)}} className="btn btn-block">Add Note</button>
                 </form>
             </details>
 
