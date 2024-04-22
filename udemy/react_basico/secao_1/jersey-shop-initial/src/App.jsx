@@ -1,11 +1,8 @@
 import './App.css';
-import { OrderDetails } from './components/OrderDetails.jsx';
-import { Item } from './components/Item/index.jsx';
-import { useState } from 'react';
 
 function App() {
 
-    const [items, setItems] = useState([
+    const items = [
         {
             
             id: 1, 
@@ -87,53 +84,56 @@ function App() {
             quantity: 1, 
             isInBag: false
         }
-    ]);
-
-    const itemsInBag = items.filter(item => item.isInBag);
-
-    const SelectedHandle = (item_id) => {
-        let itemSelected = items.filter((item) => item.id === item_id)[0];
-        // altera o valor do state
-        itemSelected.isInBag = !itemSelected.isInBag;
-
-        setItems(items.map(el => el.id === item_id ? itemSelected : el))
-
-    }
-
-    const calcularTotal = () => {
-        let orderTotal = 0;
-        itemsInBag.forEach(item => orderTotal += item.price * item.quantity);
-        return orderTotal.toFixed(2)
-    }
-
-    const quantityHandler = (e, id, increment) => {
-        e.stopPropagation();
-        let itemSelected = items.filter((item) => item.id === id)[0];
-        // altera o valor do state
-        itemSelected.quantity += increment;
-
-        setItems(items.map(el => el.id === id ? itemSelected : el))
-    }
-    
+    ];
 
     return ( 
         <>
             <section className="items">
                 <h4>Jersey Shop Made with React JS</h4>
 
-                {
-                    items.map(item =>
-                        <Item
-                            selectedProduct = {(id) => SelectedHandle(id)}
-                            changeQuantity = {(e, id, increment) => quantityHandler(e, id, increment)}
-                            key={item.id} 
-                            item={item} 
-                        />
+                { items.map((item, key) => {
+                    return (
+                        <div className="product selected" key={key}>
+                            <div className="photo">
+                                <img src={`././img/${item.photo}`} />
+                            </div>
+                            <div className="description">
+                                <span className="name">{item.name}</span>
+                                <span className="price">$ {item.price}</span>
+                                <div className="quantity-area">
+                                    <button>-</button>
+                                    <span className="quantity">{item.quantity}</span>
+                                    <button>+</button>
+                                </div>
+                            </div>
+                        </div>
                     )
-                }
+                })}
             </section>
+            
 
-            { itemsInBag.length > 0  && <OrderDetails itemsInBag={itemsInBag} calcularTotal={calcularTotal()}  /> }
+            <section className="summary">
+                <strong>Order Details</strong>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1x Real Madrid</td>
+                            <td>$ 119.99</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>Total</th>
+                            <th>$ 119.99</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
             
         </>
     );
