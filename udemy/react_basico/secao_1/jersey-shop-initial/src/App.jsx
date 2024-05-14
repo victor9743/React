@@ -1,8 +1,10 @@
 import './App.css';
-
+import { useState } from 'react';
+import OrderDetails from './components/OrderDetails';
+import Item from './components/Item';
 function App() {
 
-    const items = [
+    const [items, setItems] =  useState([
         {
             
             id: 1, 
@@ -84,56 +86,42 @@ function App() {
             quantity: 1, 
             isInBag: false
         }
-    ];
+    ]);
+
+    // o filter retornará um novo array contendo um lista de items que foram adicionados ao carrinho
+    const itemsInBag = items.filter(item => item.isInBag);
+
+    function selectHandle (id) {
+        const item = items.filter(item => item.id === id)[0];
+        item.isInBag = !item.isInBag;
+
+        setItems(items.map(item_lista => item_lista.id === id ? item : item_lista));
+    }
+
+    function quantityHandler(e, id , increment){
+        e.stopPropagation();
+        const item = items.filter(item => item.id === id)[0];
+        item.quantity += increment;
+
+        setItems(items.map(item_lista => item_lista.id === id ? item : item_lista))
+    }
 
     return ( 
         <>
             <section className="items">
                 <h4>Jersey Shop Made with React JS</h4>
 
-                { items.map((item, key) => {
-                    return (
-                        <div className="product selected" key={key}>
-                            <div className="photo">
-                                <img src={`././img/${item.photo}`} />
-                            </div>
-                            <div className="description">
-                                <span className="name">{item.name}</span>
-                                <span className="price">$ {item.price}</span>
-                                <div className="quantity-area">
-                                    <button>-</button>
-                                    <span className="quantity">{item.quantity}</span>
-                                    <button>+</button>
-                                </div>
-                            </div>
-                        </div>
-                    )
-                })}
+                { items.map(item =>
+                        <Item
+                            selectProduct = {(id) => selectHandle(item.id)}
+                            changeQuantity = {(e, id, increment) => quantityHandler(e, id, increment)}
+                            key={item.id}
+                            item={item}
+                        />
+                )}
             </section>
-            
 
-            <section className="summary">
-                <strong>Order Details</strong>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1x Real Madrid</td>
-                            <td>$ 119.99</td>
-                        </tr>
-                        
-                        <tr>
-                            <th>Total</th>
-                            <th>$ 119.99</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+            { itemsInBag.length > 0 && <OrderDetails /> }
             
         </>
     );
