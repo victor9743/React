@@ -49,7 +49,7 @@ export default function ProdutoCard ({items}) {
         <>
             <div className="row p-5">
                 { itemlist && itemlist.map((item) =>
-                <div className="card col-md-2 mx-2 text-center" key={item.id} onClick={(e) => item_selecionado(item.id, e) }>
+                <div className={`card ${item.selecionado ? "border-success" : ""} col-md-2 mx-2 text-center`} key={item.id} onClick={(e) => item_selecionado(item.id, e) }>
                     <div className="text-center p-3">
                         <img src={`${item.imagem}`} alt={`${item.nome}`} style={{width: "120px"}} />
                     </div>
