@@ -30,6 +30,7 @@ export default function Listas () {
 
     return(
         <>
+            {/* Mostrar items no react */}
             { lista.length > 0 && lista.map(item =>
                 <div key={item.id}>
                     {item.id} -

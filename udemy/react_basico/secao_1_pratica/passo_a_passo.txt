@@ -1,0 +1,16 @@
+Objetivo: Criar uma aplicação em que simule um site de compras virtuais em que, seja possivel
+adicionar ou remover produtos do carrinho, assim como, calcular o valor de cada item e valor final
+de acordo com a quantidade adicionada ou removida
+
+1- alterar visuamente usando bootstrap o visual da página e de seus componentes OK
+
+2- Adicionar uma lista ficticia em que tenha: id, imagem do produto, nome, preço, se é um produto ativo ou não,
+quantidade unitária, se é estar no carrinho ou não OK
+
+3- mostrar uma lógica em que mostre todos os items da lista OK
+
+4- Criar uma lógica em que selecione os produtos e depois que seja possivel apenas adicionar a quantidade nos 
+produtos selecionados
+
+5- Ao selecionar o produto e informar a quantidade, seja realizada automaticamente o cálculo do valor cada produto
+no carrinho como também o valor total do conjunto dos produtos

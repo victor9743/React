@@ -1,4 +1,7 @@
 import Listas from "./components/Listas";
+import RenderizacaoCondicional from "./components/RenderizacaoCondicional";
+import MostrarEsconderItem from "./components/MostrarEsconderItem";
+
 function App() {
   const titulo = "Seção 1 do react básico";
 
@@ -8,6 +11,10 @@ function App() {
         <h3>{titulo}</h3>
       </div>
       <Listas />
+      <hr />
+      <RenderizacaoCondicional />
+      <hr />
+      <MostrarEsconderItem />
     </>
   );
 }
