@@ -1,5 +1,5 @@
 import ProdutoCard from "./components/ProdutoCard";
-import Carrinho from './components/Carrinho';
+
 function App() {
   const items = [
     {

@@ -1,4 +1,13 @@
 export default function Carrinho ({carrinho}) {
+    let soma_carrinho = 0;
+
+    if (carrinho.length > 0 ) {
+        carrinho.forEach(c => {
+            soma_carrinho += c.preco_final;
+        });
+    }
+    
+
     return (
         <div className="d-flex justify-content-center">
             <div className="card p-3 col-6">
@@ -20,7 +29,7 @@ export default function Carrinho ({carrinho}) {
                                 <tr key={c.id}>
                                     <th>{ c.nome }</th>
                                     <th>{ c.quantidade_unitaria } </th>
-                                    <th>{ c.preco_final }</th>
+                                    <th>{ c.preco_final.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }</th>
                                 </tr>
                             )
 
@@ -35,7 +44,7 @@ export default function Carrinho ({carrinho}) {
                     </table>
                 </div>
                 <div className="border-top mt-3" style={{textAlign: "right"}}>
-                    Preço Final: <strong>R$ 0,00</strong>
+                    Preço Final: <strong>{soma_carrinho.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong>
                 </div>
             </div>
         </div>

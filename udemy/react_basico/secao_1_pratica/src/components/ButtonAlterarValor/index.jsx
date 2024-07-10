@@ -1,4 +1,4 @@
-export default function ButtonAlterarValor ({alterar_tipo, funcao, item, desativar_button}){
+export default function ButtonAlterarValor ({alterar_tipo, funcao, item, desativar_button, botao_texto }){
 
     return (
         <button className={`btn 
@@ -11,7 +11,7 @@ export default function ButtonAlterarValor ({alterar_tipo, funcao, item, desativ
                             
                             disabled = {desativar_button}
                             >
-                                { alterar_tipo ?  "+" : "-" }
+                                { botao_texto }
                             </button>
     );
 }
