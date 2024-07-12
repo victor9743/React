@@ -6,12 +6,31 @@ export default function Header({ultimo_id}) {
     const [valor, setValor] = useState("");
 
     function salvar() {
-        console.log(descricao);
         setTipo(document.getElementById("tipo").value);
-        console.log(valor);
 
-        let financas = localStorage.getItem("financas_db");
-        
+        let financas = localStorage.getItem("financas_db") === null ? [] : localStorage.getItem("financas_db");
+        // financas = [...financas,
+        //     {
+        //         id: ultimo_id,
+        //         descricao: descricao,
+        //         tipo: tipo,
+        //         valor: valor
+        //     }
+        // ];
+        console.log({
+            id: ultimo_id,
+            descricao: descricao,
+            tipo: tipo,
+            valor: valor
+        });
+        // localStorage.setItem("financas_db", {
+        //     id: ultimo_id,
+        //     descricao: descricao,
+        //     tipo: tipo,
+        //     valor: valor
+        // });
+
+        // console.log(localStorage.getItem("financas_db"));
     }
 
     return(

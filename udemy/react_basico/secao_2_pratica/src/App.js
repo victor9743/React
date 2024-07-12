@@ -15,7 +15,7 @@ function App() {
 
   }, []);
 
-  let ultimo_id = financas_db === "" ? 1 : financas_db.length + 1;
+  let ultimo_id = financas_db == null ? 1 : financas_db.length + 1;
 
   return (
     <>
