@@ -3,23 +3,35 @@ import FinancaList from "./components/FinancaList";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [financas_db, getFinancaDb] = useState([]);
+  const [financas_db, setFinancaDb] = useState([]);
 
   useEffect(() => {
     
-    if (localStorage.getItem("financas_db") == null) {
-      getFinancaDb(localStorage.setItem("financas_db", []));
-    } else {
-      getFinancaDb(localStorage.getItem("financas_db"));
+    if (localStorage.getItem("financas_db")) {
+      setFinancaDb(JSON.parse(localStorage.getItem("financas_db")));
     }
-
+    
   }, []);
 
-  let ultimo_id = financas_db == null ? 1 : financas_db.length + 1;
+  function salvar (descricao, tipo, valor) {
+    valor = valor.replace("R$", "").replace(",", "").replace(".", "");
+  
+    financas_db.push({
+      id: financas_db.length + 1 ,
+      descricao: descricao,
+      tipo: tipo,
+      valor: (parseFloat(valor) / 100).toFixed(2)
+    });
+
+    localStorage.setItem("financas_db", JSON.stringify(financas_db));
+    setFinancaDb(JSON.parse(localStorage.getItem("financas_db")));
+    window.location.reload();
+
+  }
 
   return (
     <>
-      <Header ultimo_id= {ultimo_id}  />
+      <Header salvar={salvar} />
       <FinancaList financa_db={financas_db} />
 
     </>

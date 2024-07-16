@@ -1,37 +1,10 @@
 import { useState } from "react";
 import "./Style.css";
-export default function Header({ultimo_id}) {
+import { NumericFormat } from 'react-number-format';
+export default function Header({salvar}) {
     const [descricao, setDescricao] =  useState("");
-    const [tipo, setTipo] = useState("");
+    const [tipo, setTipo] = useState(0);
     const [valor, setValor] = useState("");
-
-    function salvar() {
-        setTipo(document.getElementById("tipo").value);
-
-        let financas = localStorage.getItem("financas_db") === null ? [] : localStorage.getItem("financas_db");
-        // financas = [...financas,
-        //     {
-        //         id: ultimo_id,
-        //         descricao: descricao,
-        //         tipo: tipo,
-        //         valor: valor
-        //     }
-        // ];
-        console.log({
-            id: ultimo_id,
-            descricao: descricao,
-            tipo: tipo,
-            valor: valor
-        });
-        // localStorage.setItem("financas_db", {
-        //     id: ultimo_id,
-        //     descricao: descricao,
-        //     tipo: tipo,
-        //     valor: valor
-        // });
-
-        // console.log(localStorage.getItem("financas_db"));
-    }
 
     return(
         <>
@@ -74,15 +47,30 @@ export default function Header({ultimo_id}) {
                             </div>
                             <div className="mt-3">
                                 <label>Tipo</label>
-                                <select className="form-control" id="tipo">
+                                <select className="form-control" id="tipo" onChange={(e) => setTipo(e.target.value)}>
                                     <option value="0">Entrada</option>
                                     <option value="1">Saída</option>
                                 </select>
                             </div>
                             <div className="mt-3">
                                 <label>Valor</label>
-                                <input type="text" className="form-control" onChange={(e) => setValor(e.target.value)} />
+                                <NumericFormat
+                                    className="form-control"
+                                    thousandSeparator="."
+                                    decimalSeparator=","
+                                    prefix="R$ "
+                                    decimalScale={2}
+                                    fixedDecimalScale={true}
+                                    allowNegative={false}
+                                    placeholder="Digite o valor"
+                                    valueIsNumericString={true}
+                                    onValueChange={(values) => {
+                                    const { formattedValue, value } = values;
+                                        setValor(formattedValue, value); // Você pode usar `formattedValue` e `value` conforme necessário
+                                    }}
+                                />
                             </div>
+                            
                         </div>
                         <div className="modal-footer">
                             <button
@@ -92,7 +80,7 @@ export default function Header({ultimo_id}) {
                             >
                                 Fechar
                             </button>
-                            <button type="button" className="btn btn-primary" onClick={() => salvar()}>
+                            <button type="button" className="btn btn-primary" onClick={() => salvar(descricao, tipo, valor)}>
                                 Salvar
                             </button>
                         </div>
